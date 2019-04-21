@@ -1,0 +1,25 @@
+// home页面
+html,body,div,p,h1,h2,h3,h4{
+    margin: 0;padding: 0;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+.home{
+    background: red;
+    .div{
+        background: gray;
+    }
+}
