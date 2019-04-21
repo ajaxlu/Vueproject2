@@ -16,6 +16,18 @@ exports.assetsPath = function (_path) {
   return path.posix.join(assetsSubDirectory, _path)
 }
 
+/**
+ * 生成处理css的loaders配置
+ * @method cssLoaders
+ * @param  {Object}   options 生成配置
+ *                            option = {
+ *                              // 是否开启 sourceMap
+ *                              sourceMap: true,
+ *                              // 是否提取css
+ *                              extract: true
+ *                            }
+ * @return {Object}           处理css的loaders配置对象
+ */
 exports.cssLoaders = function (options) {
   options = options || {}
 
@@ -32,7 +44,12 @@ exports.cssLoaders = function (options) {
       sourceMap: options.sourceMap
     }
   }
-
+  /**
+   * 生成 ExtractTextPlugin对象或loader字符串
+   * @method generateLoaders
+   * @param  {Array}        loaders loader名称数组
+   * @return {String|Object}        ExtractTextPlugin对象或loader字符串
+   */
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
@@ -73,7 +90,19 @@ exports.cssLoaders = function (options) {
     styl: generateLoaders('stylus')
   }
 }
-
+/**
+ * 生成 style-loader的配置
+ * style-loader文档：https://github.com/webpack/style-loader
+ * @method styleLoaders
+ * @param  {Object}     options 生成配置
+ *                              option = {
+ *                                // 是否开启 sourceMap
+ *                                sourceMap: true,
+ *                                // 是否提取css
+ *                                extract: true
+ *                              }
+ * @return {Array}              style-loader的配置
+ */
 // Generate loaders for standalone style files (outside of .vue)
 exports.styleLoaders = function (options) {
   const output = []

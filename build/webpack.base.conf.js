@@ -8,6 +8,13 @@ const config = require('../config')
 // 工具函数集合
 const vueLoaderConfig = require('./vue-loader.conf')
 
+/**
+ * 获得绝对路径
+ * @method resolve
+ * @param  {String} dir 相对于本文件的路径
+ * @return {String}     绝对路径
+ */
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -50,7 +57,19 @@ module.exports = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
+      // ...(config.dev.useEslint ? [createLintingRule()] : []),
+      {
+        // 审查 js 和 vue 文件
+        // https://github.com/MoOx/eslint-loader
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        // 表示预先处理
+        enforce: "pre",
+        include: [resolve('src'), resolve('test')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         // 处理 vue文件
         // https://github.com/vuejs/vue-loader

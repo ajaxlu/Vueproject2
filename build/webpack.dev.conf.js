@@ -79,7 +79,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    // webpack错误信息提示插件
+    new FriendlyErrorsPlugin()
   ]
 })
 
